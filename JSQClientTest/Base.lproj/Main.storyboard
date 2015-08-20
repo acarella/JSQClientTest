@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rFB-Pd-0bN">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1H-15-uIh">
+                                <rect key="frame" x="0.0" y="533" width="600" height="67"/>
+                                <color key="backgroundColor" red="0.88261521464646464" green="0.2387925595439547" blue="0.24593186891579413" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="uAB-yz-bmQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="TALK TO A WELLPLEDGE COACH" image="bubble_stroked.png">
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="talkToButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t6x-VY-nEl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z1H-15-uIh" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="1Nh-LX-E83"/>
+                            <constraint firstItem="z1H-15-uIh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Fa4-2o-wPV"/>
+                            <constraint firstAttribute="trailing" secondItem="z1H-15-uIh" secondAttribute="trailing" id="gXe-w0-LSY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="TD4-cy-Tag"/>
+                    <connections>
+                        <segue destination="7fG-sf-jgg" kind="presentation" identifier="segueModalChatVC" id="hKR-pE-1gC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1115" y="389"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="txr-yr-zud">
+            <objects>
+                <viewController id="gQw-um-JUI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vNU-QE-0kL"/>
+                        <viewControllerLayoutGuide type="bottom" id="bx9-Xn-TgV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sG9-Rc-E6U">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Tri-Bk-eu4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pxY-X8-A96" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2509" y="389"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LyH-BL-yVj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rFB-Pd-0bN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CFw-n0-inx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="FjZ-02-399"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TTj-K3-0mV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="336" y="389"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iQd-kP-fI8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7fG-sf-jgg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UdW-oo-Veq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gQw-um-JUI" kind="relationship" relationship="rootViewController" id="QhO-9m-rmm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JCN-gF-6xn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1819" y="389"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bubble_stroked.png" width="56" height="35"/>
+    </resources>
+</document>
