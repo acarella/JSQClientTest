@@ -7,11 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSQMessages.h"
+#import <JSQMessagesViewController/JSQMessages.h>
 #import "Message.h"
-#import <CoreData/CoreData.h>
 
-@interface DataSource : NSObject <NSFetchedResultsControllerDelegate>
+@class DataSource;
+
+@protocol DataSourceDelegate <NSObject>
+
+-(void)updateData;
+
+@end
+
+@interface DataSource : NSObject
+
+@property (weak, nonatomic) id<DataSourceDelegate> dataSourceDelegate;
 
 @property (strong, nonatomic) NSArray *messages;
 
@@ -24,6 +33,6 @@
 @property (strong, nonatomic) NSDictionary *users;
 
 - (void)addTextMessage:(JSQMessage *)message;
-
+- (void)incomingTextFromSocket;
 
 @end

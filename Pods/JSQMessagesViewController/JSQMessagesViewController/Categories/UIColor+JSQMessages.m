@@ -54,8 +54,6 @@
                            alpha:1.0f];
 }
 
-
-
 #pragma mark - Utilities
 
 - (UIColor *)jsq_colorByDarkeningColorWithValue:(CGFloat)value

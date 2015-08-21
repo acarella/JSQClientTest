@@ -8,9 +8,10 @@
 #import "AppDelegate.h"
 #import "DataSource.h"
 #import "UIColor+WellPledgeColors.h"
-#import <MagicalRecord.h>
 #import "Message.h"
 #import "ChatMember+Helpers.h"
+#import "SocketIOSingleton.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 @interface DataSource()
 
@@ -22,6 +23,10 @@
 {
     self = [super init];
     if (self) {
+        
+        [[SocketIOSingleton sharedSingleton] setCallback:^(NSArray *data, void (^ack)(NSArray*)) {
+            [self insertNewObjectFromServer:data];
+        } forEvent:@"chat"];
         
         /**
          *  Create avatar images once.
@@ -81,14 +86,36 @@
 }
 
 -(void)addTextMessage:(JSQMessage *)message{
-
+    
+    [[SocketIOSingleton sharedSingleton]sendMessage:message.text];
+    
     Message *messageCD = [Message MR_createEntity];
     messageCD.text = message.text;
     messageCD.senderId = message.senderId;
+    messageCD.senderDisplayName = [ChatMember currentMember].chatDisplayName;
+    messageCD.timeStamp = [NSDate date];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
-    self.messages = [Message MR_findAllSortedBy:@"timeStamp" ascending:YES];
+    [self updateArray];
+}
+
+-(void)insertNewObjectFromServer:(NSArray *)data{
+
+    Message *message = [Message MR_createEntity];
     
+    [message setText:data[0]];
+    [message setTimeStamp:[NSDate dateWithTimeIntervalSince1970:([data[1] doubleValue]/1000)]];
+    [message setSenderDisplayName:[ChatMember currentCoach].chatDisplayName];
+    [message setSenderId:[ChatMember currentCoach].coachId];
+    [self updateArray];
+    
+}
+
+-(void)updateArray{
+
+    self.messages = [Message MR_findAllSortedBy:@"timeStamp" ascending:YES];
+    [self.dataSourceDelegate updateData];
+
 }
 
 - (void)addPhotoMediaMessage

@@ -11,6 +11,7 @@
 #import "Message.h"
 #import "Member.h"
 #import "Coach.h"
+#import "SocketIOSingleton.h"
 
 static NSString * const kJSQDemoAvatarDisplayNameBrian = @"Coach Brian";
 static NSString * const kJSQDemoAvatarDisplayNameUser = @"Current User";
@@ -29,10 +30,12 @@ static NSString * const kJSQDemoAvatarIdUser = @"468-768355-23123";
     // Override point for customization after application launch.
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"ChatTest"];
-    [Message MR_truncateAll];
-    [ChatMember MR_truncateAll];
-    
-    [self loadFakeMessages];
+    //[Message MR_truncateAll];
+    //[ChatMember MR_truncateAll];
+    [[SocketIOSingleton sharedSingleton] connect];
+    if ([Message MR_countOfEntities] < 1) {
+        [self loadFakeMessages];
+    }
     return YES;
 }
 
@@ -80,14 +83,14 @@ static NSString * const kJSQDemoAvatarIdUser = @"468-768355-23123";
                              @"Any questions? If not, let's get started with a reading on your weight.",
                              nil];
     
-    int timeInterval = 60;
+    int timeInterval = -6000;
     for (NSString *messageText in coachTexts) {
         Message *message = [Message MR_createEntity];
         message.senderId = coach.coachId;
         message.senderDisplayName = coach.chatDisplayName;
         message.text = messageText;
         message.timeStamp = [NSDate dateWithTimeIntervalSinceNow:timeInterval];
-        timeInterval += timeInterval;
+        timeInterval +=1000;
     }
     
     Message *userMessage = [Message MR_createEntity];

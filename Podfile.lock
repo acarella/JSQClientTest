@@ -4,16 +4,19 @@ PODS:
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - MagicalRecord (2.3.0)
+  - Socket.IO-Client-Swift (2.4.3)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
   - JSQMessagesViewController
   - MagicalRecord
+  - Socket.IO-Client-Swift (~> 2.4.3)
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
   JSQMessagesViewController: ca11f86fa68ca70835f05e169df9244147c1dc40
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
+  Socket.IO-Client-Swift: 4a7170cb0572a8490588ea1bc9e76f5dafc8150d
 
 COCOAPODS: 0.38.2

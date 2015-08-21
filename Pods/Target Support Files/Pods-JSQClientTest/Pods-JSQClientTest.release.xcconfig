@@ -1,5 +1,7 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CocoaAsyncSocket" "${PODS_ROOT}/Headers/Public/JSQMessagesViewController" "${PODS_ROOT}/Headers/Public/JSQSystemSoundPlayer" "${PODS_ROOT}/Headers/Public/MagicalRecord" "${PODS_ROOT}/Headers/Public/MagicalRecord/MagicalRecord"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CocoaAsyncSocket" -isystem "${PODS_ROOT}/Headers/Public/JSQMessagesViewController" -isystem "${PODS_ROOT}/Headers/Public/JSQSystemSoundPlayer" -isystem "${PODS_ROOT}/Headers/Public/MagicalRecord" -isystem "${PODS_ROOT}/Headers/Public/MagicalRecord/MagicalRecord"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"CocoaAsyncSocket" -l"JSQMessagesViewController" -l"JSQSystemSoundPlayer" -l"MagicalRecord" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreData" -framework "CoreGraphics" -framework "CoreLocation" -framework "Foundation" -framework "MapKit" -framework "QuartzCore" -framework "Security" -framework "UIKit"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/CocoaAsyncSocket.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/JSQMessagesViewController.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/JSQSystemSoundPlayer.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MagicalRecord.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Socket_IO_Client_Swift.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "CocoaAsyncSocket" -framework "JSQMessagesViewController" -framework "JSQSystemSoundPlayer" -framework "MagicalRecord" -framework "Socket_IO_Client_Swift"
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-JSQClientTest
 PODS_ROOT = ${SRCROOT}/Pods

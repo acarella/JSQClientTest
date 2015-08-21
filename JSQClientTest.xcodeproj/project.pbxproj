@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B7CC1BBD2BA1128996F3A0AB /* libPods-JSQClientTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6904C16A32629869FAC042 /* libPods-JSQClientTest.a */; };
+		489EBB63E284BAEEA97C28F4 /* Pods_JSQClientTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C88862FA17258875A7AAE7 /* Pods_JSQClientTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BE6ECA351B878E8C00D89E0F /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA341B878E8C00D89E0F /* Message.m */; };
 		BE6ECA3B1B87931B00D89E0F /* ChatMember+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA3A1B87931B00D89E0F /* ChatMember+Helpers.m */; };
 		BE6ECA3E1B879B0500D89E0F /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA3D1B879B0500D89E0F /* Coach.m */; };
 		BE6ECA411B879B0500D89E0F /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA401B879B0500D89E0F /* Member.m */; };
 		BE6ECA441B879B0500D89E0F /* ChatMember.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA431B879B0500D89E0F /* ChatMember.m */; };
+		BE6ECA471B87A40200D89E0F /* SocketIOSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA461B87A40200D89E0F /* SocketIOSingleton.m */; };
 		BEA985AB1B861F65002325CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985AA1B861F65002325CC /* main.m */; };
 		BEA985AE1B861F65002325CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985AD1B861F65002325CC /* AppDelegate.m */; };
 		BEA985B11B861F65002325CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985B01B861F65002325CC /* ViewController.m */; };
@@ -23,7 +24,6 @@
 		BEA985D01B862070002325CC /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985CF1B862070002325CC /* DataSource.m */; };
 		BEA985D31B86284F002325CC /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985D21B86284F002325CC /* ChatViewController.m */; };
 		BEA985D61B864FC3002325CC /* UIColor+WellPledgeColors.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985D51B864FC3002325CC /* UIColor+WellPledgeColors.m */; };
-		BEA985D91B866D99002325CC /* AsyncSocketSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985D81B866D99002325CC /* AsyncSocketSingleton.m */; };
 		BEA985DF1B867535002325CC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA985DE1B867535002325CC /* CoreData.framework */; };
 		BEA985E21B867564002325CC /* ChatTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BEA985E01B867564002325CC /* ChatTest.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -39,8 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D6904C16A32629869FAC042 /* libPods-JSQClientTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSQClientTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FA8B962B1A4651345C2A934 /* Pods-JSQClientTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSQClientTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSQClientTest/Pods-JSQClientTest.release.xcconfig"; sourceTree = "<group>"; };
+		94C88862FA17258875A7AAE7 /* Pods_JSQClientTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JSQClientTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE6ECA331B878E8C00D89E0F /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		BE6ECA341B878E8C00D89E0F /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		BE6ECA391B87931B00D89E0F /* ChatMember+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChatMember+Helpers.h"; sourceTree = "<group>"; };
@@ -51,6 +51,8 @@
 		BE6ECA401B879B0500D89E0F /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
 		BE6ECA421B879B0500D89E0F /* ChatMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMember.h; sourceTree = "<group>"; };
 		BE6ECA431B879B0500D89E0F /* ChatMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMember.m; sourceTree = "<group>"; };
+		BE6ECA451B87A40200D89E0F /* SocketIOSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocketIOSingleton.h; path = JSQClientTest/SocketIOSingleton.h; sourceTree = "<group>"; };
+		BE6ECA461B87A40200D89E0F /* SocketIOSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocketIOSingleton.m; path = JSQClientTest/SocketIOSingleton.m; sourceTree = "<group>"; };
 		BEA985A51B861F65002325CC /* JSQClientTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSQClientTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA985A91B861F65002325CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEA985AA1B861F65002325CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,8 +72,6 @@
 		BEA985D21B86284F002325CC /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		BEA985D41B864FC3002325CC /* UIColor+WellPledgeColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WellPledgeColors.h"; sourceTree = "<group>"; };
 		BEA985D51B864FC3002325CC /* UIColor+WellPledgeColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WellPledgeColors.m"; sourceTree = "<group>"; };
-		BEA985D71B866D99002325CC /* AsyncSocketSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocketSingleton.h; sourceTree = "<group>"; };
-		BEA985D81B866D99002325CC /* AsyncSocketSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocketSingleton.m; sourceTree = "<group>"; };
 		BEA985DE1B867535002325CC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BEA985E11B867564002325CC /* ChatTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatTest.xcdatamodel; sourceTree = "<group>"; };
 		D54E39CE37CF5CD732D89E35 /* Pods-JSQClientTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSQClientTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSQClientTest/Pods-JSQClientTest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEA985DF1B867535002325CC /* CoreData.framework in Frameworks */,
-				B7CC1BBD2BA1128996F3A0AB /* libPods-JSQClientTest.a in Frameworks */,
+				489EBB63E284BAEEA97C28F4 /* Pods_JSQClientTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				BEA985DE1B867535002325CC /* CoreData.framework */,
-				2D6904C16A32629869FAC042 /* libPods-JSQClientTest.a */,
+				94C88862FA17258875A7AAE7 /* Pods_JSQClientTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,8 +181,8 @@
 		BEA985DA1B866DA2002325CC /* Socket */ = {
 			isa = PBXGroup;
 			children = (
-				BEA985D71B866D99002325CC /* AsyncSocketSingleton.h */,
-				BEA985D81B866D99002325CC /* AsyncSocketSingleton.m */,
+				BE6ECA451B87A40200D89E0F /* SocketIOSingleton.h */,
+				BE6ECA461B87A40200D89E0F /* SocketIOSingleton.m */,
 			);
 			name = Socket;
 			path = ..;
@@ -240,6 +240,7 @@
 				BEA985A21B861F65002325CC /* Frameworks */,
 				BEA985A31B861F65002325CC /* Resources */,
 				24015DAFCB067919189160CF /* Copy Pods Resources */,
+				9C6F355E5B34CBFDC38ECDFD /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -356,6 +357,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		9C6F355E5B34CBFDC38ECDFD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JSQClientTest/Pods-JSQClientTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -368,13 +384,13 @@
 				BE6ECA351B878E8C00D89E0F /* Message.m in Sources */,
 				BEA985AE1B861F65002325CC /* AppDelegate.m in Sources */,
 				BEA985D31B86284F002325CC /* ChatViewController.m in Sources */,
-				BEA985D91B866D99002325CC /* AsyncSocketSingleton.m in Sources */,
 				BEA985E21B867564002325CC /* ChatTest.xcdatamodeld in Sources */,
 				BE6ECA411B879B0500D89E0F /* Member.m in Sources */,
 				BE6ECA3B1B87931B00D89E0F /* ChatMember+Helpers.m in Sources */,
 				BE6ECA441B879B0500D89E0F /* ChatMember.m in Sources */,
 				BE6ECA3E1B879B0500D89E0F /* Coach.m in Sources */,
 				BEA985D01B862070002325CC /* DataSource.m in Sources */,
+				BE6ECA471B87A40200D89E0F /* SocketIOSingleton.m in Sources */,
 				BEA985AB1B861F65002325CC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,6 +521,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JSQClientTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -516,6 +533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JSQClientTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

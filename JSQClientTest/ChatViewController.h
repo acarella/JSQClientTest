@@ -18,7 +18,7 @@
 
 @end
 
-@interface ChatViewController : JSQMessagesViewController <UIActionSheetDelegate>
+@interface ChatViewController : JSQMessagesViewController <UIActionSheetDelegate, DataSourceDelegate>
 
 @property (weak, nonatomic) id<ChatViewControllerDelegate> delegateModal;
 
