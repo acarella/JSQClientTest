@@ -8,16 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "JSQMessages.h"
-
-static NSString * const kJSQDemoAvatarDisplayNameBrian = @"Coach Brian";
-static NSString * const kJSQDemoAvatarDisplayNameUser = @"Current User";
-
-static NSString * const kJSQDemoAvatarIdBrian = @"053496-4509-289";
-static NSString * const kJSQDemoAvatarIdUser = @"468-768355-23123";
+#import "Message.h"
+#import <CoreData/CoreData.h>
 
 @interface DataSource : NSObject <NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) NSMutableArray *messages;
+@property (strong, nonatomic) NSArray *messages;
 
 @property (strong, nonatomic) NSDictionary *avatars;
 
@@ -27,7 +23,7 @@ static NSString * const kJSQDemoAvatarIdUser = @"468-768355-23123";
 
 @property (strong, nonatomic) NSDictionary *users;
 
-- (void)addPhotoMediaMessage;
+- (void)addTextMessage:(JSQMessage *)message;
 
 
 @end

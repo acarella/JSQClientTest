@@ -7,6 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import <MagicalRecord/MagicalRecord.h>
+#import "Message.h"
+#import "Member.h"
+#import "Coach.h"
+
+static NSString * const kJSQDemoAvatarDisplayNameBrian = @"Coach Brian";
+static NSString * const kJSQDemoAvatarDisplayNameUser = @"Current User";
+
+static NSString * const kJSQDemoAvatarIdBrian = @"053496-4509-289";
+static NSString * const kJSQDemoAvatarIdUser = @"468-768355-23123";
 
 @interface AppDelegate ()
 
@@ -17,6 +27,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"ChatTest"];
+    [Message MR_truncateAll];
+    [ChatMember MR_truncateAll];
+    
+    [self loadFakeMessages];
     return YES;
 }
 
@@ -42,84 +58,48 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - Core Data stack
-
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
-- (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.vikas.ChatTest" in the application's documents directory.
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
-- (NSManagedObjectModel *)managedObjectModel {
-    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ChatTest" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
-}
-
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it.
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
+- (void)loadFakeMessages
+{
+    /**
+     *  Load some fake messages for demo.
+     *
+     *  You should have a mutable array or orderedSet, or something.
+     */
+    
+    Member *member = [Member MR_createEntity];
+    member.chatDisplayName = @"Antonio";
+    member.memberId = @"1";
+    
+    Coach *coach = [Coach MR_createEntity];
+    coach.chatDisplayName = @"Bryan";
+    coach.coachId = @"2";
+    
+    NSArray *coachTexts = [NSArray arrayWithObjects:@"Welcome to WellPledge Antonio!",
+                             @"I'm Bryan, your personal health coach. Nice to meet you!",
+                             @"As you send me updates about your weight, mood, sleep, and exercise I'll keep you accountable and cheer you on.",
+                             @"Any questions? If not, let's get started with a reading on your weight.",
+                             nil];
+    
+    int timeInterval = 60;
+    for (NSString *messageText in coachTexts) {
+        Message *message = [Message MR_createEntity];
+        message.senderId = coach.coachId;
+        message.senderDisplayName = coach.chatDisplayName;
+        message.text = messageText;
+        message.timeStamp = [NSDate dateWithTimeIntervalSinceNow:timeInterval];
+        timeInterval += timeInterval;
     }
     
-    // Create the coordinator and store
+    Message *userMessage = [Message MR_createEntity];
+    userMessage.senderId = member.memberId;
+    userMessage.senderDisplayName = member.chatDisplayName;
+    userMessage.text = @"Hi Brian, ok, I'll upload a weight reading.";
+    userMessage.timeStamp = [NSDate dateWithTimeIntervalSinceNow:timeInterval];
     
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"ChatTest.sqlite"];
-    NSError *error = nil;
-    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        // Report any error we got.
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
-        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
-        dict[NSUnderlyingErrorKey] = error;
-        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
-        // Replace this with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
     
-    return _persistentStoreCoordinator;
-}
-
-
-- (NSManagedObjectContext *)managedObjectContext {
-    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
     
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (!coordinator) {
-        return nil;
-    }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    return _managedObjectContext;
-}
-
-#pragma mark - Core Data Saving support
-
-- (void)saveContext {
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        NSError *error = nil;
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }
+    
 }
 
 @end

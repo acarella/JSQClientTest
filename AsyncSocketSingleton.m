@@ -7,7 +7,6 @@
 //
 
 #import "AsyncSocketSingleton.h"
-#import <MagicalRecord/MagicalRecord.h>
 
 #define SOCKET_HOST @"127.0.0.1"
 #define SOCKET_PORT 3000

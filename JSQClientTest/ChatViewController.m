@@ -7,6 +7,7 @@
 //
 
 #import "ChatViewController.h"
+#import "ChatMember+Helpers.h"
 
 @implementation ChatViewController
 
@@ -16,14 +17,14 @@
     
     self.title = @"JSQMessagesTest";
     
-    self.senderId = kJSQDemoAvatarIdUser;
-    self.senderDisplayName = kJSQDemoAvatarDisplayNameUser;
-    
     self.demoData = [[DataSource alloc] init];
+    
+    self.senderId = [NSString stringWithFormat:@"%@",[ChatMember currentMember].memberId];
+    self.senderDisplayName = [ChatMember currentMember].chatDisplayName;
 
     // set avatar sizes
-    self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(25.0, 25.0);
-    self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(25.0, 25.0);
+    self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(35.0, 35.0);
+    self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(35.0, 35.0);
     
     self.showLoadEarlierMessagesHeader = YES;
     
@@ -79,7 +80,7 @@
                                                           date:date
                                                           text:text];
     
-    [self.demoData.messages addObject:message];
+    [self.demoData addTextMessage:message];
     
     [self finishSendingMessageAnimated:YES];
 }
@@ -103,7 +104,7 @@
     
     switch (buttonIndex) {
         case 0:
-            [self.demoData addPhotoMediaMessage];
+            //[self.demoData addPhotoMediaMessage];
             break;
             
         case 1:
@@ -127,11 +128,6 @@
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.demoData.messages objectAtIndex:indexPath.item];
-}
-
-- (void)collectionView:(JSQMessagesCollectionView *)collectionView didDeleteMessageAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.demoData.messages removeObjectAtIndex:indexPath.item];
 }
 
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -395,7 +391,7 @@
                                                  senderDisplayName:self.senderDisplayName
                                                               date:[NSDate date]
                                                              media:item];
-        [self.demoData.messages addObject:message];
+        [self.demoData addTextMessage:message];
         [self finishSendingMessage];
         return NO;
     }

@@ -4,6 +4,7 @@
 target 'JSQClientTest' do
   pod 'JSQMessagesViewController' 
   pod 'CocoaAsyncSocket'
+  pod 'MagicalRecord'
 end
 
 target 'JSQClientTestTests' do

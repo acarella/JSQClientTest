@@ -8,10 +8,11 @@
 #import "AppDelegate.h"
 #import "DataSource.h"
 #import "UIColor+WellPledgeColors.h"
+#import <MagicalRecord.h>
+#import "Message.h"
+#import "ChatMember+Helpers.h"
 
 @interface DataSource()
-
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -22,7 +23,6 @@
     self = [super init];
     if (self) {
         
-        [self loadFakeMessages];
         /**
          *  Create avatar images once.
          *
@@ -38,16 +38,16 @@
         
         JSQMessagesAvatarImage *brianImage = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"demo_avatar_brian"]
                                                                                        diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+        Coach *coach = [ChatMember currentCoach];
+        Member *member = [ChatMember currentMember];
         
-        
-        self.avatars = @{ kJSQDemoAvatarIdBrian : brianImage,
-                          kJSQDemoAvatarIdUser : userImage
+        self.avatars = @{ coach.coachId : brianImage,
+                          member.memberId : userImage
                           };
         
         
-        self.users = @{ kJSQDemoAvatarIdBrian : kJSQDemoAvatarDisplayNameBrian,
-                        kJSQDemoAvatarIdUser : kJSQDemoAvatarDisplayNameUser};
-        
+        self.users = @{ coach.coachId : coach.chatDisplayName,
+                        member.memberId : member.chatDisplayName};
         
         /**
          *  Create message bubble images objects.
@@ -60,84 +60,44 @@
         self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor wp_messageBubbleUserColor]];
         self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor wp_messageBubbleCoachColor]];
     
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                                                
-        NSManagedObjectContext *context = delegate.managedObjectContext;
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        // Configure the request's entity, and optionally its predicate.
-        fetchRequest.entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:YES];
-        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-        [fetchRequest setSortDescriptors:sortDescriptors];
-
-        
-        self.fetchedResultsController = [[NSFetchedResultsController alloc]
-                                                  initWithFetchRequest:fetchRequest
-                                                  managedObjectContext:context
-                                                  sectionNameKeyPath:nil
-                                                  cacheName:nil];
-        self.fetchedResultsController.delegate = self;
-        
-        NSError *error;
-        BOOL success = [self.fetchedResultsController performFetch:&error];
-        
     }
     
     return self;
 }
 
-- (void)loadFakeMessages
-{
-    /**
-     *  Load some fake messages for demo.
-     *
-     *  You should have a mutable array or orderedSet, or something.
-     */
-    self.messages = [[NSMutableArray alloc] initWithObjects:
-                     [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdBrian
-                                        senderDisplayName:kJSQDemoAvatarDisplayNameBrian
-                                                     date:[NSDate distantPast]
-                                                     text:@"Welcome to WellPledge Antonio!"],
-                     
-                     [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdBrian
-                                        senderDisplayName:kJSQDemoAvatarDisplayNameBrian
-                                                     date:[NSDate distantPast]
-                                                     text:@"I'm Bryan, your personal health coach. Nice to meet you!"],
-                     
-                     [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdBrian
-                                        senderDisplayName:kJSQDemoAvatarDisplayNameBrian
-                                                     date:[NSDate distantPast]
-                                                     text:@"As you send me updates about your weight, mood, sleep, and exercise I'll keep you accountable and cheer you on."],
-                     
-                     [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdBrian
-                                        senderDisplayName:kJSQDemoAvatarDisplayNameBrian
-                                                     date:[NSDate date]
-                                                     text:@"Any questions? If not, let's get started with a reading on your weight."],
-                     
-                     [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdUser
-                                        senderDisplayName:kJSQDemoAvatarDisplayNameUser
-                                                     date:[NSDate date]
-                                                     text:@"Hi Brian, ok, I'll upload a weight reading."],
-                     
-                     nil];
+-(NSArray *)messages{
+
+    NSMutableArray *temp = [[NSMutableArray alloc]init];
+    
+    NSArray *messages = [Message MR_findAll];
+    for (Message *message in messages) {
+        JSQMessage *jsqMessage = [[JSQMessage alloc]initWithSenderId:message.senderId senderDisplayName:message.senderDisplayName date:message.timeStamp text:message.text];
+        [temp addObject:jsqMessage];
+    }
+    
+    NSSortDescriptor *timeSort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    
+    return [NSArray arrayWithArray:[temp sortedArrayUsingDescriptors:@[timeSort]]];
 }
 
--(void)addTextMessage{
+-(void)addTextMessage:(JSQMessage *)message{
 
-    JSQMessage *textMessage = [JSQMessage messageWithSenderId:kJSQDemoAvatarIdUser
-                                                   displayName:kJSQDemoAvatarDisplayNameUser
-                                                         media:nil];
-    [self.messages addObject:textMessage];
-
+    Message *messageCD = [Message MR_createEntity];
+    messageCD.text = message.text;
+    messageCD.senderId = message.senderId;
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    self.messages = [Message MR_findAllSortedBy:@"timeStamp" ascending:YES];
+    
 }
 
 - (void)addPhotoMediaMessage
 {
     JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:@"goldengate"]];
-    JSQMessage *photoMessage = [JSQMessage messageWithSenderId:kJSQDemoAvatarIdUser
-                                                   displayName:kJSQDemoAvatarDisplayNameUser
-                                                         media:photoItem];
-    [self.messages addObject:photoMessage];
+//    JSQMessage *photoMessage = [JSQMessage messageWithSenderId:kJSQDemoAvatarIdUser
+//                                                   displayName:kJSQDemoAvatarDisplayNameUser
+//                                                         media:photoItem];
+    //[self.messages addObject:photoMessage];
 }
 
 @end

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B7CC1BBD2BA1128996F3A0AB /* libPods-JSQClientTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6904C16A32629869FAC042 /* libPods-JSQClientTest.a */; };
+		BE6ECA351B878E8C00D89E0F /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA341B878E8C00D89E0F /* Message.m */; };
+		BE6ECA3B1B87931B00D89E0F /* ChatMember+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA3A1B87931B00D89E0F /* ChatMember+Helpers.m */; };
+		BE6ECA3E1B879B0500D89E0F /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA3D1B879B0500D89E0F /* Coach.m */; };
+		BE6ECA411B879B0500D89E0F /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA401B879B0500D89E0F /* Member.m */; };
+		BE6ECA441B879B0500D89E0F /* ChatMember.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6ECA431B879B0500D89E0F /* ChatMember.m */; };
 		BEA985AB1B861F65002325CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985AA1B861F65002325CC /* main.m */; };
 		BEA985AE1B861F65002325CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985AD1B861F65002325CC /* AppDelegate.m */; };
 		BEA985B11B861F65002325CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA985B01B861F65002325CC /* ViewController.m */; };
@@ -36,6 +41,16 @@
 /* Begin PBXFileReference section */
 		2D6904C16A32629869FAC042 /* libPods-JSQClientTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSQClientTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FA8B962B1A4651345C2A934 /* Pods-JSQClientTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSQClientTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSQClientTest/Pods-JSQClientTest.release.xcconfig"; sourceTree = "<group>"; };
+		BE6ECA331B878E8C00D89E0F /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		BE6ECA341B878E8C00D89E0F /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		BE6ECA391B87931B00D89E0F /* ChatMember+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChatMember+Helpers.h"; sourceTree = "<group>"; };
+		BE6ECA3A1B87931B00D89E0F /* ChatMember+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChatMember+Helpers.m"; sourceTree = "<group>"; };
+		BE6ECA3C1B879B0500D89E0F /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
+		BE6ECA3D1B879B0500D89E0F /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
+		BE6ECA3F1B879B0500D89E0F /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
+		BE6ECA401B879B0500D89E0F /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
+		BE6ECA421B879B0500D89E0F /* ChatMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMember.h; sourceTree = "<group>"; };
+		BE6ECA431B879B0500D89E0F /* ChatMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMember.m; sourceTree = "<group>"; };
 		BEA985A51B861F65002325CC /* JSQClientTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSQClientTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA985A91B861F65002325CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEA985AA1B861F65002325CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -187,9 +202,19 @@
 		BEA985DC1B866E82002325CC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BE6ECA421B879B0500D89E0F /* ChatMember.h */,
+				BE6ECA431B879B0500D89E0F /* ChatMember.m */,
+				BE6ECA3F1B879B0500D89E0F /* Member.h */,
+				BE6ECA401B879B0500D89E0F /* Member.m */,
+				BE6ECA3C1B879B0500D89E0F /* Coach.h */,
+				BE6ECA3D1B879B0500D89E0F /* Coach.m */,
+				BE6ECA331B878E8C00D89E0F /* Message.h */,
+				BE6ECA341B878E8C00D89E0F /* Message.m */,
 				BEA985E01B867564002325CC /* ChatTest.xcdatamodeld */,
 				BEA985CE1B862070002325CC /* DataSource.h */,
 				BEA985CF1B862070002325CC /* DataSource.m */,
+				BE6ECA391B87931B00D89E0F /* ChatMember+Helpers.h */,
+				BE6ECA3A1B87931B00D89E0F /* ChatMember+Helpers.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -340,10 +365,15 @@
 			files = (
 				BEA985D61B864FC3002325CC /* UIColor+WellPledgeColors.m in Sources */,
 				BEA985B11B861F65002325CC /* ViewController.m in Sources */,
+				BE6ECA351B878E8C00D89E0F /* Message.m in Sources */,
 				BEA985AE1B861F65002325CC /* AppDelegate.m in Sources */,
 				BEA985D31B86284F002325CC /* ChatViewController.m in Sources */,
 				BEA985D91B866D99002325CC /* AsyncSocketSingleton.m in Sources */,
 				BEA985E21B867564002325CC /* ChatTest.xcdatamodeld in Sources */,
+				BE6ECA411B879B0500D89E0F /* Member.m in Sources */,
+				BE6ECA3B1B87931B00D89E0F /* ChatMember+Helpers.m in Sources */,
+				BE6ECA441B879B0500D89E0F /* ChatMember.m in Sources */,
+				BE6ECA3E1B879B0500D89E0F /* Coach.m in Sources */,
 				BEA985D01B862070002325CC /* DataSource.m in Sources */,
 				BEA985AB1B861F65002325CC /* main.m in Sources */,
 			);
